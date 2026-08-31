@@ -37,7 +37,7 @@ It re-derives everything from the receipt JSON and never calls our server.
 | [GBLIN_WEBAPP](https://github.com/gblinproject/GBLIN_WEBAPP) | [gblin.digital](https://gblin.digital) and the x402 paid endpoints. |
 | [GBLIN_PLUGIN](https://github.com/gblinproject/GBLIN_PLUGIN) | ElizaOS plugin, published on npm as `plugin-gblin`. |
 | [base-heartbeat-bo](https://github.com/gblinproject/base-heartbeat-bo) | The keeper bot that pokes the contract so weights refresh. |
-| [Whitepaper](https://github.com/gblinproject/Whitepaper) | Design papers. Historical by declaration — the chain wins over all of them. |
+| [x402-catalog-probe](https://github.com/gblinproject/x402-catalog-probe) | One file, zero dependencies: probes the public x402 catalog and reports how many endpoints actually answer. Includes the correction log for the time we got it wrong. |
 
 ### For agents
 
