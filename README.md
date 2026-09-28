@@ -34,18 +34,19 @@ It re-derives everything from the receipt JSON and never calls our server.
 |---|---|
 | [gblin-treasury-risk-regime](https://github.com/gblinproject/gblin-treasury-risk-regime) | Market risk regime for AI agents — calm / elevated / crash, free to read. Plus the receipts log, the witness, the MCP server and the edge worker. |
 | [GBLIN-Protocol](https://github.com/gblinproject/GBLIN-Protocol) | Reserve-backed cbBTC + WETH + USDC index token on Base, minted and redeemed at NAV. Owner is a 48-hour timelock. |
-| [GBLIN_WEBAPP](https://github.com/gblinproject/GBLIN_WEBAPP) | [gblin.digital](https://gblin.digital) and the x402 paid endpoints. |
+| [GBLIN_WEBAPP](https://github.com/gblinproject/GBLIN_WEBAPP) | [gblin.digital](https://gblin.digital) and the agent endpoints: state, quotes and calldata free; attestations, receipts and liveness reports paid over x402. |
 | [GBLIN_PLUGIN](https://github.com/gblinproject/GBLIN_PLUGIN) | ElizaOS plugin, published on npm as `plugin-gblin`. |
-| [base-heartbeat-bo](https://github.com/gblinproject/base-heartbeat-bo) | The keeper bot that pokes the contract so weights refresh. |
+| [base-heartbeat-bo](https://github.com/gblinproject/base-heartbeat-bo) | Retired: the keeper bot of the previous contract, kept for reference. The vault in service needs none. |
 | [x402-catalog-probe](https://github.com/gblinproject/x402-catalog-probe) | One file, zero dependencies: probes the public x402 catalog and reports how many endpoints actually answer. Includes the correction log for the time we got it wrong. |
 
 ### For agents
 
 ```bash
-npx -y @gblin-protocol/mcp-server     # 13 tools over stdio
+npx -y @gblin-protocol/mcp-server     # 20 tools over stdio
+npx @gblin-protocol/agent-treasury status   # cash in USDC, surplus in GBLIN, refill before x402 payments
 ```
 
-Hosted, streamable HTTP — 8 tools, 4 resources, 2 prompts:
+Hosted, streamable HTTP — 21 tools, 4 resources, 2 prompts:
 `https://gblin-mcp.gblin-mcp-worker.workers.dev/mcp`
 
 Machine-readable descriptions: [llms.txt](https://gblin.digital/api/x402/llms.txt) ·
@@ -56,8 +57,9 @@ Reading is free and stays free. Payment buys a **signed** answer you can hand to
 
 ### Things we will not say
 
-We do not say **audited**. There is a Slither run on the deployed contract with its result published
-(0 critical, 0 high) and no manual review, and we say so in the same sentence.
+We do not say **audited**. The vault in service went through unit, fork, fuzzing, symbolic and mutation
+testing and static analysis, all published with their results in GBLIN-Protocol/audits, and it has had no
+paid manual review. We say both in the same sentence.
 
 We do not say **immutable**. A 48-hour timelock owns the contract and can change parameters. Every one
 of those changes is scheduled in public before it executes.
