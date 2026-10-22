@@ -11,7 +11,7 @@ curl -s https://gblin-mcp.gblin-mcp-worker.workers.dev/log/checkpoint
 ```
 
 That is a signed checkpoint of an append-only log of AI actions ([RFC 6962](https://datatracker.ietf.org/doc/html/rfc6962)).
-It carries **two** signature lines. The second one is not ours — an independent witness cosigns it, which is
+It carries **two** signature lines. The second one is not ours ‚Äî an independent witness cosigns it, which is
 what makes "append-only" something other than our word for it. The tree root is anchored once a day on Base
 as an EAS attestation.
 
@@ -32,8 +32,8 @@ It re-derives everything from the receipt JSON and never calls our server.
 
 | | |
 |---|---|
-| [gblin-treasury-risk-regime](https://github.com/gblinproject/gblin-treasury-risk-regime) | Market risk regime for AI agents — calm / elevated / crash, free to read. Plus the receipts log, the witness, the MCP server and the edge worker. |
-| [GBLIN-Protocol](https://github.com/gblinproject/GBLIN-Protocol) | Reserve-backed cbBTC + WETH + USDC index token on Base, minted and redeemed at NAV. Owner is a 48-hour timelock. |
+| [gblin-treasury-risk-regime](https://github.com/gblinproject/gblin-treasury-risk-regime) | Market risk regime for AI agents ‚Äî calm / elevated / crash, free to read. Plus the receipts log, the witness, the MCP server and the edge worker. |
+| [GBLIN-Protocol](https://github.com/gblinproject/GBLIN-Protocol) | Reserve-backed cbBTC + WETH + USDC index token on Base, minted and redeemed at NAV. Audited by Soken. Owner is a 48-hour timelock. |
 | [GBLIN_WEBAPP](https://github.com/gblinproject/GBLIN_WEBAPP) | [gblin.digital](https://gblin.digital) and the agent endpoints: state, quotes and calldata free; attestations, receipts and liveness reports paid over x402. |
 | [GBLIN_PLUGIN](https://github.com/gblinproject/GBLIN_PLUGIN) | ElizaOS plugin, published on npm as `plugin-gblin`. |
 | [base-heartbeat-bo](https://github.com/gblinproject/base-heartbeat-bo) | Retired: the keeper bot of the previous contract, kept for reference. The vault in service needs none. |
@@ -46,20 +46,23 @@ npx -y @gblin-protocol/mcp-server     # 20 tools over stdio
 npx @gblin-protocol/agent-treasury status   # cash in USDC, surplus in GBLIN, refill before x402 payments
 ```
 
-Hosted, streamable HTTP — 21 tools, 4 resources, 2 prompts:
+Hosted, streamable HTTP ‚Äî 21 tools, 4 resources, 2 prompts:
 `https://gblin-mcp.gblin-mcp-worker.workers.dev/mcp`
 
-Machine-readable descriptions: [llms.txt](https://gblin.digital/api/x402/llms.txt) ·
-[.well-known/x402](https://gblin.digital/.well-known/x402) ·
+Machine-readable descriptions: [llms.txt](https://gblin.digital/api/x402/llms.txt) ¬∑
+[.well-known/x402](https://gblin.digital/.well-known/x402) ¬∑
 [agent-card.json](https://gblin.digital/.well-known/agent-card.json)
 
 Reading is free and stays free. Payment buys a **signed** answer you can hand to someone else.
 
-### Things we will not say
+### What we say, and what we do not
 
-We do not say **audited**. The vault in service went through unit, fork, fuzzing, symbolic and mutation
-testing and static analysis, all published with their results in GBLIN-Protocol/audits, and it has had no
-paid manual review. We say both in the same sentence.
+The vault in service is **audited by Soken** (9 October 2026, commit `311bd91`, the seven contracts in production
+on Base): 0 critical, 0 high, 0 medium, 2 low, 14 informational. Read the
+[report as published by Soken](https://github.com/Soken-LTD/smart-contract-audits/blob/main/GBLIN%20Protocol%20Security%20Review.pdf)
+and compare its SHA-256 with the copy and the hash in [GBLIN-Protocol/audits](https://github.com/gblinproject/GBLIN-Protocol/tree/main/audits).
+An audit reviews one commit at one point in time; it is not a guarantee. The internal testing and its limits are
+listed in the same folder.
 
 We do not say **immutable**. A 48-hour timelock owns the contract and can change parameters. Every one
 of those changes is scheduled in public before it executes.
