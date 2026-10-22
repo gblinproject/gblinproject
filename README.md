@@ -11,7 +11,7 @@ curl -s https://gblin-mcp.gblin-mcp-worker.workers.dev/log/checkpoint
 ```
 
 That is a signed checkpoint of an append-only log of AI actions ([RFC 6962](https://datatracker.ietf.org/doc/html/rfc6962)).
-It carries **two** signature lines. The second one is not ours ‚Äî an independent witness cosigns it, which is
+It carries **two** signature lines. The second one is not ours — an independent witness cosigns it, which is
 what makes "append-only" something other than our word for it. The tree root is anchored once a day on Base
 as an EAS attestation.
 
@@ -32,7 +32,7 @@ It re-derives everything from the receipt JSON and never calls our server.
 
 | | |
 |---|---|
-| [gblin-treasury-risk-regime](https://github.com/gblinproject/gblin-treasury-risk-regime) | Market risk regime for AI agents ‚Äî calm / elevated / crash, free to read. Plus the receipts log, the witness, the MCP server and the edge worker. |
+| [gblin-treasury-risk-regime](https://github.com/gblinproject/gblin-treasury-risk-regime) | Market risk regime for AI agents — calm / elevated / crash, free to read. Plus the receipts log, the witness, the MCP server and the edge worker. |
 | [GBLIN-Protocol](https://github.com/gblinproject/GBLIN-Protocol) | Reserve-backed cbBTC + WETH + USDC index token on Base, minted and redeemed at NAV. Audited by Soken. Owner is a 48-hour timelock. |
 | [GBLIN_WEBAPP](https://github.com/gblinproject/GBLIN_WEBAPP) | [gblin.digital](https://gblin.digital) and the agent endpoints: state, quotes and calldata free; attestations, receipts and liveness reports paid over x402. |
 | [GBLIN_PLUGIN](https://github.com/gblinproject/GBLIN_PLUGIN) | ElizaOS plugin, published on npm as `plugin-gblin`. |
@@ -46,11 +46,11 @@ npx -y @gblin-protocol/mcp-server     # 20 tools over stdio
 npx @gblin-protocol/agent-treasury status   # cash in USDC, surplus in GBLIN, refill before x402 payments
 ```
 
-Hosted, streamable HTTP ‚Äî 21 tools, 4 resources, 2 prompts:
+Hosted, streamable HTTP — 21 tools, 4 resources, 2 prompts:
 `https://gblin-mcp.gblin-mcp-worker.workers.dev/mcp`
 
-Machine-readable descriptions: [llms.txt](https://gblin.digital/api/x402/llms.txt) ¬∑
-[.well-known/x402](https://gblin.digital/.well-known/x402) ¬∑
+Machine-readable descriptions: [llms.txt](https://gblin.digital/api/x402/llms.txt) ·
+[.well-known/x402](https://gblin.digital/.well-known/x402) ·
 [agent-card.json](https://gblin.digital/.well-known/agent-card.json)
 
 Reading is free and stays free. Payment buys a **signed** answer you can hand to someone else.
